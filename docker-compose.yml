@@ -1,6 +1,6 @@
 version: "2"
 services:
-  nginx:
+  dl_nginx:
     image: nginx
     restart: always
     ports:
@@ -15,7 +15,7 @@ services:
       - db
     links:
       - db
-  fpm:
+  dl_fpm:
     build: ./fpm
     restart: always
     volumes:
@@ -23,7 +23,7 @@ services:
       - ./app/storage:/var/app/storage
     links:
       - db
-  db:
+  dl_db:
     image: mysql:5.7
     ports:
       - 3306:3306
