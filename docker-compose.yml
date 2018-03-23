@@ -22,6 +22,8 @@ services:
     volumes:
       - ./app/public:/var/app/public
       - ./app/storage:/var/app/storage
+    ports:
+      - 9000:9000
     links:
       - dl_db
   dl_db:

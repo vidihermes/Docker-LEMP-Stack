@@ -1,36 +1,25 @@
-FROM php:7.0-fpm
+FROM ubuntu
 
 RUN apt-get update && apt-get install -y \
-    libxml2-dev \
-    zlib1g-dev \
-    libfreetype6-dev \
-    libjpeg62-turbo-dev \
-    libmcrypt-dev \
-    libpng-dev \
-    && docker-php-ext-install -j$(nproc) iconv mcrypt pdo pdo_mysql mysqli mbstring xml zip \
-    && docker-php-ext-configure gd --with-freetype-dir=/usr/include/ --with-jpeg-dir=/usr/include/ \
-    && docker-php-ext-install -j$(nproc) gd
+    vim curl \
+    software-properties-common \
+    && LC_ALL=C.UTF-8 add-apt-repository -y ppa:ondrej/php \
+    && apt-get update && apt-get install -y \
+    php7.1 php7.1-fpm php7.1-zip php7.1-curl \
+    php7.1-gd php7.1-mcrypt php7.1-mysql php7.1-common \
+    php7.1-cli php7.1-mbstring php7.1-sqlite3 php7.1-xml \
+    php7.1-mcrypt php7.1-intl \
+    && mkdir /run/php
 
-#FROM php:7.1-fpm
-#
-#RUN apt-get update && apt-get install -y   apk upgrade && \
-#    apk add --update --no-cache \
-#    libcurl \
-#    curl-dev \
-#    libpng-dev \
-#    libjpeg \
-#    libjpeg-turbo-dev \
-#    freetype-dev \
-#    jpeg-dev \
-#    libmcrypt-dev \
-#    sqlite-dev \
-#    libxml2-dev \
-#    libintl \
-#    icu-dev \
-#    zlib-dev \
-#    supervisor
-#
-## Install extra modules here
-#RUN /usr/local/bin/docker-php-ext-install gd pdo pdo_mysql curl mcrypt mysqli mbstring pdo_sqlite xml intl zip \
-#    && /usr/local/bin/docker-php-ext-configure gd --with-freetype-dir=/usr/include/ --with-jpeg-dir=/usr/include/
+RUN apt-get remove -y --purge software-properties-common \
+    && apt-get clean \
+    && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
+RUN sed -i -e 's/;daemonize = yes/daemonize = no/g' /etc/php/7.1/fpm/php-fpm.conf \
+    && sed -i "s/listen = .*/listen = 9000/" /etc/php/7.1/fpm/pool.d/www.conf
+
+WORKDIR /var/app/public
+
+EXPOSE 9000
+
+CMD ["php-fpm7.1"]
