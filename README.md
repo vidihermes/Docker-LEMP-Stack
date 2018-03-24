@@ -1,4 +1,4 @@
-# Docker LEMP Stack Bootstrap 
+# Docker LEMP Stack Bootstrap For : Laravel
 
 ## Images :
 * Ubuntu : Latest Version
@@ -10,5 +10,5 @@
 * Clone this Project to Your Working Folder
 * Access `Docker-LEMP-Stack` Folder via command prompt or git bash
 * Enter this command :`docker-compose up --build`
-* Place Your PHP Code in the `app` folder ( which is the root folder )
+* Place Your Laravel Code in the `app` folder ( please make sure to overwrite the public folder and it's content )
 
