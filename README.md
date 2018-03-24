@@ -5,10 +5,12 @@
 * Php7.1-FPM 
 * Nginx
 * MySQL 5.7
+* Composer
 
 ## How to Use :
 * Clone this Project to Your Working Folder
 * Access `Docker-LEMP-Stack` Folder via command prompt or git bash
 * Enter this command :`docker-compose up --build`
 * Place Your Laravel Code in the `app` folder ( please make sure to overwrite the public folder and it's content )
+* Read about Composer : [composer](https://getcomposer.org/doc/), read about docker composer : [docker composer](https://hub.docker.com/_/composer/)
 

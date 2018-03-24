@@ -33,3 +33,9 @@ services:
       - MYSQL_ROOT_PASSWORD=root
       - MYSQL_DATABASE=oemjih
     restart: always
+  dl_composer:
+    image: composer
+    volumes:
+      - ./app:/app
+    links:
+      - dl_fpm
