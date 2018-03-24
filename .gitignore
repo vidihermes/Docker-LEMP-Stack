@@ -1,3 +1,3 @@
-ubuntu-xenial-16.04-cloudimg-console.log
+*.log
 .idea/
 nginx/log/

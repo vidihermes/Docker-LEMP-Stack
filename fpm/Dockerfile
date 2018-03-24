@@ -18,7 +18,7 @@ RUN apt-get remove -y --purge software-properties-common \
 RUN sed -i -e 's/;daemonize = yes/daemonize = no/g' /etc/php/7.1/fpm/php-fpm.conf \
     && sed -i "s/listen = .*/listen = 9000/" /etc/php/7.1/fpm/pool.d/www.conf
 
-WORKDIR /var/app/public
+WORKDIR /var/app
 
 EXPOSE 9000
 

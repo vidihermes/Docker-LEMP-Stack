@@ -20,8 +20,7 @@ services:
     build: ./fpm
     restart: always
     volumes:
-      - ./app/public:/var/app/public
-      - ./app/storage:/var/app/storage
+      - ./app/public:/var/app
     ports:
       - 9000:9000
     links:
